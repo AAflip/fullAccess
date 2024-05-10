@@ -1,13 +1,29 @@
 export async function main(ns) {
 	var targetList;
 	var targets = [];
+	if(!ns.fileExists("hackerMan.js")){
+		ns.alert("You need to have the hackerMan.js file, you can get this file at [https://github.com/AAflip/fullAccess/blob/main/allFiles/hackerMan.js]");
+		ns.exit();
+	}
+	if(!ns.fileExists("servers.txt")){
+		ns.alert("You need to have the servers.txt file, you can get this file at [https://github.com/AAflip/fullAccess/blob/main/allFiles/textFiles/servers.txt]");
+		ns.exit();
+	}
+	if(!ns.fileExists("hackables.txt")){
+		ns.alert("You need to have the hackables.txt file, you can get this file at [https://github.com/AAflip/fullAccess/blob/main/allFiles/textFiles/hackables.txt]");
+		ns.exit();
+	}
+	if(!ns.fileExists("nonhackables.txt")){
+		ns.alert("You need to have the nonhackables.txt file, you can get this file at [https://github.com/AAflip/fullAccess/blob/main/allFiles/textFiles/nonhackables.txt]");
+		ns.exit();
+	}
 	if(ns.fileExists("fullscan.js")){
 		ns.run("fullscan.js");
 		await ns.sleep(500);
 		targetList = String(ns.read("servers.txt"));
 		targets = targetList.split(",");
 	}else{
-		ns.alert("You need to have the fullscan.js file, you can get this file at [link here]");
+		ns.alert("You need to have the fullscan.js file, you can get this file at [https://github.com/AAflip/fullAccess/blob/main/allFiles/fullscan.js]");
 		ns.exit();
 	}
 	if(targets.length > 3){
