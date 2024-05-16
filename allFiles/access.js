@@ -1,6 +1,6 @@
 export async function main(ns) {
 	var targetList;
-	var targets = [];
+	var targets;
 	if(!ns.fileExists("hackerMan.js")){
 		ns.alert("You need to have the hackerMan.js file, you can get this file at [https://github.com/AAflip/fullAccess/blob/main/allFiles/hackerMan.js]");
 		ns.exit();
@@ -26,7 +26,7 @@ export async function main(ns) {
 		ns.alert("You need to have the fullscan.js file, you can get this file at [https://github.com/AAflip/fullAccess/blob/main/allFiles/fullscan.js]");
 		ns.exit();
 	}
-	if(targets.length > 3){
+	if(targets.length > 71){
 		for(var i = 71; i < targets.length; ){
 			targets.pop();
 		}
@@ -39,20 +39,20 @@ export async function main(ns) {
 		if(ns.hasRootAccess(String(targets[i])) == false){
 			switch(ns.getServerNumPortsRequired(targets[i])){
 				case 1:
-					if(ns.fileExists('brutessh.exe')){
+					if(ns.fileExists('BruteSSH.exe')){
 						ns.brutessh(targets[i]);
 						portsOpened = 1;
 					}
 					break;
 				case 2:
-					if(ns.fileExists('ftpcrack.exe')){
+					if(ns.fileExists('FTPCrack.exe')){
 						ns.brutessh(targets[i]);
 						ns.ftpcrack(targets[i]);
 						portsOpened = 2;
 					}
 					break;
 				case 3:
-					if(ns.fileExists('relaysmtp.exe')){
+					if(ns.fileExists('relaySMTP.exe')){
 						ns.brutessh(targets[i]);
 						ns.ftpcrack(targets[i]);
 						ns.relaysmtp(targets[i]);
@@ -60,7 +60,7 @@ export async function main(ns) {
 					}
 					break;
 				case 4:
-					if(ns.fileExists('httpworm.exe')){
+					if(ns.fileExists('HTTPWorm.exe')){
 						ns.brutessh(targets[i]);
 						ns.ftpcrack(targets[i]);
 						ns.relaysmtp(targets[i]);
@@ -69,7 +69,7 @@ export async function main(ns) {
 					}
 					break;
 				case 5:
-					if(ns.fileExists('sqlinject.exe')){
+					if(ns.fileExists('SQLInject.exe')){
 						ns.brutessh(targets[i]);
 						ns.ftpcrack(targets[i]);
 						ns.relaysmtp(targets[i]);
@@ -82,6 +82,8 @@ export async function main(ns) {
 			if(ns.getServerNumPortsRequired(targets[i]) <= portsOpened){
 				ns.nuke(targets[i]);
 			}
+		}else{
+			portsOpened = 5;
 		}
 		if(ns.getServerRequiredHackingLevel(targets[i]) > ns.getHackingLevel()){
 			ns.write("nonhackables.txt",targets[i]+" Lack Level\n");
